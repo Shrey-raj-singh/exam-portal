@@ -18,7 +18,6 @@ const question_bank = require("./schema/question_bank.js")
 const school_details = require("./schema/school_details.js")
 const student_info = require("./schema/student_info.js")
 const question_paper=require("./schema/question_paper.js");
-const mailer = require("./db_connections/mailer.js");
 
 //middlwares
 app.use(cors())
@@ -178,7 +177,6 @@ app.post('/post/school_details', async (req, res) => {
     });
     
     await newSchool.save();
-    mailer(email, spoc_id, spoc_password);
     res.status(200).json({ message: 'School details added successfully', data: newSchool });
   } catch (error) {
     console.error('Error adding school details:', error);
